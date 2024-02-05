@@ -1,7 +1,11 @@
 /** @format */
 
+"use client";
+
+import axios from "axios";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useQuery } from "react-query";
 
 const NoSSR = dynamic(() => import("@/components/Navbar"), { ssr: false });
 
@@ -60,8 +64,18 @@ interface WeatherDetail {
   dt_txt: string;
 }
 
-// https://api.openweathermap.org/data/2.5/forecast?q=pune&appid=3a6361e0b290e5b3a9cdd6928941a73c&cnt=56
 export default function Home() {
+  const { isLoading, error, data } = useQuery<WeatherData>("repoData", async () => {
+    const { data } = await axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast?q=pune&appid={process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56`
+    );
+    return data;
+  });
+
+  console.log("data");
+
+  if (isLoading) return "Loading...";
+
   return (
     <div className="flex flex-col gap-4 bg-gray-100 min-h-screen">
       <NoSSR />
