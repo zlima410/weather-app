@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useQuery } from "react-query";
 
-const NoSSR = dynamic(() => import("@/components/Navbar"), { ssr: false });
+const Navbar = dynamic(() => import("@/components/Navbar"), { ssr: false });
 
 interface WeatherData {
   cod: string;
@@ -81,7 +81,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-4 bg-gray-100 min-h-screen">
-      <NoSSR />
+      <Navbar />
     </div>
   );
 }
