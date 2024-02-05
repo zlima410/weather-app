@@ -3,6 +3,7 @@
 "use client";
 
 import axios from "axios";
+import { format, parseISO } from "date-fns";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useQuery } from "react-query";
@@ -72,6 +73,8 @@ export default function Home() {
     return data;
   });
 
+  const firstData = data?.list[0];
+
   if (isLoading)
     return (
       <div className="flex items-center max-h-screen justify-center">
@@ -85,12 +88,12 @@ export default function Home() {
       <main className="px-3 max-w-7xl mx-auto flex flex-col gap-9 w-full pb-10 pt-4">
         {/* Today's data */}
         <section>
-            <div>
-                <h2 className="flex gap-1 text-2xl items-end">
-                    <p></p>
-                </h2>
-                <div></div>
-            </div>
+          <div>
+            <h2 className="flex gap-1 text-2xl items-end">
+              <p> {format(parseISO(firstData?.dt_txt ?? ""), "MM-dd-yy")} </p>
+            </h2>
+            <div></div>
+          </div>
         </section>
         {/* 7 day forecast data*/}
         <section></section>
