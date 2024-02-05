@@ -1,6 +1,6 @@
 /** @format */
 
-"use client";
+'use client'
 
 import axios from "axios";
 import { format, parseISO } from "date-fns";
@@ -90,7 +90,7 @@ export default function Home() {
         <section>
           <div>
             <h2 className="flex gap-1 text-2xl items-end">
-              <p> {format(parseISO(firstData?.dt_txt ?? ""), "MM-dd-yy")} </p>
+              <p>{format(parseISO(firstData?.dt_txt ?? ""), "EEEE")}</p>
             </h2>
             <div></div>
           </div>
