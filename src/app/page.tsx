@@ -64,7 +64,6 @@ interface WeatherDetail {
   dt_txt: string;
 }
 
-// https://api.openweathermap.org/data/2.5/forecast?q=pune&appid=&cnt=56
 export default function Home() {
   const { isLoading, error, data } = useQuery<WeatherData>("repoData", async () => {
     const { data } = await axios.get(
