@@ -1,6 +1,6 @@
 /** @format */
 
-'use client'
+"use client";
 
 import axios from "axios";
 import { format, parseISO } from "date-fns";
@@ -68,7 +68,7 @@ interface WeatherDetail {
 export default function Home() {
   const { isLoading, error, data } = useQuery<WeatherData>("repoData", async () => {
     const { data } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=pune&appid={process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56`
+      `https://api.openweathermap.org/data/2.5/forecast?q=pune&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=56`
     );
     return data;
   });
