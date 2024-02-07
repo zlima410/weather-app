@@ -91,6 +91,7 @@ export default function Home() {
           <div>
             <h2 className="flex gap-1 text-2xl items-end">
               <p>{format(parseISO(firstData?.dt_txt ?? ""), "EEEE")}</p>
+              <p className="text-lg">({format(parseISO(firstData?.dt_txt ?? ""), "MM.dd.yyyy")})</p>
             </h2>
             <div></div>
           </div>
