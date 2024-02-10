@@ -3,6 +3,7 @@
 "use client";
 
 import Container from "@/components/Container";
+import { convertKelvinToFarenheit } from "@/utils/convertKelvinToFarenheit";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 import dynamic from "next/dynamic";
@@ -95,9 +96,26 @@ export default function Home() {
               <p className="text-lg">({format(parseISO(firstData?.dt_txt ?? ""), "MM.dd.yyyy")})</p>
             </h2>
             <Container className="gap-10 px-6 items-center">
-                <div className="flex flex-col px-4">
-                    
-                </div>
+              <div className="flex flex-col px-4">
+                <span className="text-5xl">{convertKelvinToFarenheit(firstData?.main.temp ?? 0)}°</span>
+                <p className="text-xs space-x-1 whitespace-nowrap">
+                  <span> Feels like</span>
+                  <span>{convertKelvinToFarenheit(firstData?.main.feels_like ?? 0)}°</span>
+                </p>
+                <p className="text-xs space-x-2">
+                  <span>
+                    <span>
+                        {convertKelvinToFarenheit(firstData?.main.temp_min ?? 0)}
+                        °↓{" "} 
+                    </span>
+                    <span>
+                      {" "}
+                      {convertKelvinToFarenheit(firstData?.main.temp_max ?? 0)}
+                      °↑
+                    </span>
+                  </span>
+                </p>
+              </div>
             </Container>
           </div>
         </section>
